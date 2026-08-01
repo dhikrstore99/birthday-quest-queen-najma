@@ -1,0 +1,262 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <meta name="theme-color" content="#dcae42">
+  <meta name="description" content="A playful choose-your-own-adventure birthday story for Queen Najma.">
+  <meta name="application-name" content="Queen Najma's Birthday Adventure">
+  <meta name="mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-title" content="Birthday Adventure">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+  <meta name="msapplication-TileColor" content="#4b164c">
+  <meta name="format-detection" content="telephone=no">
+  <title>Queen Najma's Birthday Adventure</title>
+  <link rel="manifest" href="./manifest.webmanifest">
+  <link rel="icon" type="image/png" sizes="32x32" href="./assets/icons/favicon-32.png">
+  <link rel="apple-touch-icon" sizes="180x180" href="./assets/icons/apple-touch-icon.png">
+  <link rel="stylesheet" href="./styles.css">
+</head>
+<body>
+  <a class="skip-link" href="#main-content">Skip to the story</a>
+
+  <div class="app-shell" id="app">
+    <header class="app-header" aria-label="Adventure controls">
+      <a class="brand" href="#" aria-label="Queen Najma birthday quest home">
+        <span class="brand-crown" aria-hidden="true">♛</span>
+        <span>Queen Najma's Quest</span>
+      </a>
+      <div class="header-actions">
+        <button class="icon-button" id="music-toggle" type="button" aria-pressed="false" aria-label="Turn optional sound on">
+          <span aria-hidden="true">♪</span><span class="control-label">Sound off</span>
+        </button>
+        <label class="volume-control" for="volume-slider">
+          <span class="sr-only">Audio volume</span>
+          <span aria-hidden="true">◖</span>
+          <input id="volume-slider" type="range" min="0" max="1" step="0.01" value="0.18" aria-label="Audio volume">
+        </label>
+        <button class="icon-button" id="motion-toggle" type="button" aria-pressed="false" aria-label="Reduce motion">
+          <span aria-hidden="true">✦</span><span class="control-label">Motion on</span>
+        </button>
+      </div>
+    </header>
+
+    <main id="main-content" tabindex="-1">
+      <section class="screen welcome-screen is-active" id="welcome-screen" aria-labelledby="welcome-title">
+        <div class="confetti-layer" id="welcome-confetti" aria-hidden="true"></div>
+        <div class="balloons" aria-hidden="true">
+          <span class="balloon balloon-one"></span><span class="balloon balloon-two"></span>
+          <span class="balloon balloon-three"></span><span class="balloon balloon-four"></span>
+          <span class="balloon balloon-five"></span>
+        </div>
+        <div class="welcome-panel">
+          <p class="eyebrow">A royal celebration in nine storybook chapters</p>
+          <div class="crown-mark" aria-hidden="true">♛</div>
+          <h1 id="welcome-title">Happy 69th Birthday,<br><span>Queen Najma!</span></h1>
+          <p class="project-title">The Birthday Quest of Queen Najma</p>
+          <p class="subtitle">An Interactive Choose-Your-Own Adventure</p>
+          <p class="intro">A mysterious map, one very questionable plan, and a treasure worthy of the family's favorite queen await.</p>
+          <div class="welcome-actions">
+            <button class="button button-primary button-large" id="begin-button" type="button">Begin the Adventure <span aria-hidden="true">→</span></button>
+          </div>
+          <div class="resume-panel" id="resume-panel" hidden>
+            <p>Your royal bookmark is still here.</p>
+            <div class="button-row">
+              <button class="button button-primary" id="continue-saved-button" type="button">Continue Adventure</button>
+              <button class="button button-secondary" id="start-over-button" type="button">Start Over</button>
+            </div>
+          </div>
+          <p class="privacy-note"><span aria-hidden="true">◆</span> Your choices stay private on this device.</p>
+        </div>
+        <div class="textile-border" aria-hidden="true"></div>
+      </section>
+
+      <section class="screen story-screen" id="story-screen" aria-labelledby="chapter-title" hidden>
+        <div class="story-wrap">
+          <div class="progress-card" aria-label="Chapter progress">
+            <div class="progress-copy">
+              <span id="chapter-counter">Chapter 1 of 9</span>
+              <span id="progress-percent">11% complete</span>
+            </div>
+            <div class="progress-track" role="progressbar" aria-valuemin="0" aria-valuemax="100" aria-valuenow="11" aria-label="Adventure progress">
+              <span id="progress-fill"></span>
+            </div>
+          </div>
+
+          <section class="memory-shelf" aria-labelledby="memory-shelf-title">
+            <div class="memory-shelf-heading">
+              <span id="memory-shelf-title">Royal Memory Tokens</span>
+              <span id="token-count">0 of 9 collected</span>
+            </div>
+            <div class="token-row" id="token-row" aria-live="polite"></div>
+          </section>
+
+          <article class="story-card" id="story-card">
+            <div class="scene-effects" id="scene-effects" aria-hidden="true"></div>
+            <div class="chapter-heading">
+              <p class="eyebrow" id="chapter-label">Chapter One</p>
+              <h2 id="chapter-title" tabindex="-1">The Birth of a Queen</h2>
+              <p class="chapter-subtitle" id="chapter-subtitle"></p>
+            </div>
+            <figure class="photo-frame" id="photo-frame" hidden>
+              <div class="photo-prelude" id="photo-prelude" aria-live="polite" hidden></div>
+              <button class="photo-action" id="photo-action" type="button" disabled>
+                <img id="chapter-photo" src="" alt="">
+                <span class="what-wall-bubble" id="what-wall-bubble" aria-hidden="true" hidden>WHAT WALL?!</span>
+              </button>
+              <div class="photo-placeholder" id="photo-placeholder" role="img" aria-label="Photo placeholder">
+                <span aria-hidden="true">✦</span><strong>A royal memory belongs here</strong><small>Add the chapter photo when it is ready.</small>
+              </div>
+              <figcaption id="photo-caption"></figcaption>
+            </figure>
+            <div class="story-copy" id="story-copy"></div>
+            <div class="reaction-card" id="reaction-card" role="status" aria-live="polite" hidden></div>
+            <button class="voice-button" id="voice-button" type="button" hidden>
+              <span class="voice-icon" aria-hidden="true">▶</span>
+              <span id="voice-button-label">Play a family message</span>
+            </button>
+          </article>
+
+          <nav class="chapter-navigation" aria-label="Story navigation">
+            <button class="button button-secondary" id="previous-button" type="button"><span aria-hidden="true">←</span> Previous</button>
+            <button class="button button-primary" id="continue-button" type="button" disabled>Continue <span aria-hidden="true">→</span></button>
+          </nav>
+          <p class="completion-hint" id="completion-hint" aria-live="polite">Complete every royal blank to continue.</p>
+          <button class="text-button restart-button" id="restart-button" type="button">Restart adventure</button>
+        </div>
+      </section>
+
+      <section class="screen results-screen" id="results-screen" aria-labelledby="results-title" hidden>
+        <div class="confetti-layer" id="results-confetti" aria-hidden="true"></div>
+        <div class="results-wrap">
+          <div class="treasure-glow" aria-hidden="true"></div>
+          <div class="treasure" aria-hidden="true"><span class="treasure-light"></span><span class="treasure-lid"></span><span class="treasure-body">✦</span></div>
+          <p class="eyebrow">The Kingdom has spoken</p>
+          <h2 id="results-title" tabindex="-1">Queen Najma's Birthday Results</h2>
+          <p class="results-lead" id="recommendation-text"></p>
+
+          <div class="top-results">
+            <article class="result-highlight"><span aria-hidden="true">♥</span><p>Top love language</p><h3 id="top-love-language"></h3></article>
+            <article class="result-highlight"><span aria-hidden="true">♛</span><p>Top gift match</p><h3 id="top-gift-type"></h3></article>
+          </div>
+
+          <div class="rankings-grid">
+            <section class="ranking-card" aria-labelledby="love-ranking-title">
+              <h3 id="love-ranking-title">Her Love Language Mix</h3>
+              <p class="score-note">Playful shares of points earned in this adventure</p>
+              <ol class="score-list" id="love-results"></ol>
+            </section>
+            <section class="ranking-card" aria-labelledby="gift-ranking-title">
+              <h3 id="gift-ranking-title">Her Gift Preference Mix</h3>
+              <p class="score-note">A cheerful guide, rounded to whole percentages</p>
+              <ol class="score-list" id="gift-results"></ol>
+            </section>
+          </div>
+
+          <section class="answers-summary" aria-labelledby="answers-title">
+            <h3 id="answers-title">The Choices That Shaped the Quest</h3>
+            <ul id="answers-list"></ul>
+          </section>
+
+          <div class="keepsakes-grid">
+            <section class="keepsake-card" aria-labelledby="tokens-title">
+              <h3 id="tokens-title">Royal Memory Collection</h3>
+              <p>One keepsake from every chapter of the quest.</p>
+              <div class="result-token-row" id="result-token-row"></div>
+            </section>
+            <section class="keepsake-card" aria-labelledby="achievements-title">
+              <h3 id="achievements-title">Family Achievements</h3>
+              <p>Quiet little honors earned along the way.</p>
+              <ul class="achievement-list" id="achievement-list"></ul>
+            </section>
+          </div>
+
+          <p class="disclaimer">This playful birthday adventure is for fun and is not an official psychological assessment.</p>
+          <div class="results-actions">
+            <button class="button button-primary" id="replay-button" type="button">📖 Replay Adventure</button>
+            <button class="button button-secondary" id="view-gallery-button" type="button">🖼 View Family Gallery</button>
+            <button class="button button-secondary" id="install-button" type="button" hidden>🏠 Install App</button>
+            <button class="button button-secondary" id="print-button" type="button">Print / Save Results</button>
+          </div>
+
+          <section class="gallery-card" id="gallery-section" aria-labelledby="gallery-title" tabindex="-1">
+            <div class="gallery-header">
+              <div>
+                <p class="eyebrow">Unlocked after the quest</p>
+                <h3 id="gallery-title">Queen Najma's Memory Gallery</h3>
+              </div>
+              <div class="gallery-controls" aria-label="Gallery controls">
+                <button class="button button-secondary button-compact" id="gallery-grid-button" type="button" aria-pressed="false">Grid</button>
+                <button class="button button-secondary button-compact" id="gallery-fullscreen-button" type="button">Fullscreen</button>
+              </div>
+            </div>
+            <div class="gallery-stage" id="gallery-stage" tabindex="0" aria-label="Photo slideshow. Use left and right arrow keys to navigate.">
+              <button class="gallery-arrow gallery-arrow-left" id="gallery-previous-button" type="button" aria-label="Previous photograph">‹</button>
+              <figure>
+                <img id="gallery-image" src="" alt="" loading="lazy" decoding="async">
+                <div class="gallery-placeholder" id="gallery-placeholder" hidden><span aria-hidden="true">📷</span><strong>A family memory belongs here</strong></div>
+                <figcaption><span id="gallery-caption"></span><small id="gallery-counter"></small></figcaption>
+              </figure>
+              <button class="gallery-arrow gallery-arrow-right" id="gallery-next-button" type="button" aria-label="Next photograph">›</button>
+            </div>
+            <div class="gallery-grid" id="gallery-grid" hidden></div>
+          </section>
+        </div>
+      </section>
+    </main>
+  </div>
+
+  <div class="montage-overlay" id="memory-montage" role="dialog" aria-modal="true" aria-labelledby="montage-title" hidden>
+    <div class="montage-light" aria-hidden="true"></div>
+    <div class="montage-content">
+      <p class="eyebrow">Before the Kingdom speaks</p>
+      <h2 id="montage-title">A Life Filled With Beautiful Memories</h2>
+      <figure class="montage-frame" id="montage-frame">
+        <img id="montage-image" src="" alt="">
+        <div class="gallery-placeholder" id="montage-placeholder" hidden><span aria-hidden="true">✦</span><strong>A memory is on its way</strong></div>
+        <figcaption id="montage-caption"></figcaption>
+      </figure>
+      <section class="final-voice-panel" id="final-voice-panel" aria-labelledby="final-voice-title" hidden>
+        <div class="voice-orbit" aria-hidden="true">♥</div>
+        <h3 id="final-voice-title">Voices From Her Family</h3>
+        <p id="final-voice-status">Three birthday messages are waiting for Queen Najma.</p>
+        <button class="button button-primary" id="final-voice-button" type="button">Play Family Messages</button>
+      </section>
+      <div class="montage-progress" aria-hidden="true"><span id="montage-progress-fill"></span></div>
+      <button class="button button-secondary" id="skip-montage-button" type="button">Skip to Results</button>
+    </div>
+  </div>
+
+  <div class="modal-backdrop" id="choice-modal" hidden>
+    <section class="choice-dialog" role="dialog" aria-modal="true" aria-labelledby="choice-modal-title" aria-describedby="choice-modal-description">
+      <div class="dialog-handle" aria-hidden="true"></div>
+      <div class="dialog-header">
+        <div><p class="eyebrow">Make a royal choice</p><h2 id="choice-modal-title">Choose an answer</h2></div>
+        <button class="close-button" id="close-modal-button" type="button" aria-label="Close choices">×</button>
+      </div>
+      <p id="choice-modal-description">Pick the answer that best completes this part of the story. You can change it before continuing.</p>
+      <div class="choice-list" id="choice-list" role="radiogroup" aria-label="Available answers"></div>
+    </section>
+  </div>
+
+  <div class="modal-backdrop" id="restart-modal" hidden>
+    <section class="confirm-dialog" role="alertdialog" aria-modal="true" aria-labelledby="restart-title" aria-describedby="restart-description">
+      <div class="crown-mark small" aria-hidden="true">♛</div>
+      <h2 id="restart-title">Restart the adventure?</h2>
+      <p id="restart-description">This will clear every saved answer and score on this device.</p>
+      <div class="button-row">
+        <button class="button button-secondary" id="cancel-restart-button" type="button">Keep My Place</button>
+        <button class="button button-danger" id="confirm-restart-button" type="button">Yes, Start Over</button>
+      </div>
+    </section>
+  </div>
+
+  <div class="toast" id="toast" role="status" aria-live="polite" aria-atomic="true"></div>
+  <div class="sr-only" id="live-region" aria-live="polite" aria-atomic="true"></div>
+  <audio id="background-audio" preload="none" loop src="assets/audio/birthday-background.mp3"></audio>
+  <audio id="family-audio" preload="none"></audio>
+  <audio id="final-voice-audio" preload="none"></audio>
+  <script src="./script.js"></script>
+</body>
+</html>
