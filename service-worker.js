@@ -1,11 +1,14 @@
 "use strict";
 
-const CACHE_VERSION = "queen-najma-rc1-v2";
+const CACHE_VERSION = "queen-najma-rc1-v3";
 const APP_SHELL = [
   "./",
   "./index.html",
   "./styles.css",
   "./script.js",
+  "./quiz.html",
+  "./quiz.css",
+  "./quiz.js",
   "./manifest.webmanifest",
   "./assets/icons/favicon-32.png",
   "./assets/icons/apple-touch-icon.png",
@@ -54,7 +57,8 @@ self.addEventListener("fetch", (event) => {
           caches.open(CACHE_VERSION).then((cache) => cache.put(event.request, copy));
           return response;
         })
-        .catch(() => caches.match(new URL("./index.html", self.registration.scope).href))
+        .catch(() => caches.match(event.request)
+          .then((cached) => cached || caches.match(new URL("./index.html", self.registration.scope).href)))
     );
     return;
   }

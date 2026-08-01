@@ -1,0 +1,82 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <meta name="theme-color" content="#dcae42">
+  <meta name="description" content="A playful family quiz about Queen Najma, lovingly known as Baygi.">
+  <title>How Well Do You Know Baygi?</title>
+  <link rel="manifest" href="./manifest.webmanifest">
+  <link rel="icon" type="image/png" sizes="32x32" href="./assets/icons/favicon-32.png">
+  <link rel="apple-touch-icon" sizes="180x180" href="./assets/icons/apple-touch-icon.png">
+  <link rel="stylesheet" href="./styles.css">
+  <link rel="stylesheet" href="./quiz.css">
+</head>
+<body class="quiz-page">
+  <a class="skip-link" href="#quiz-main">Skip to the quiz</a>
+  <header class="app-header">
+    <a class="brand" href="./index.html"><span class="brand-crown" aria-hidden="true">♛</span><span>Queen Najma's Quest</span></a>
+    <a class="quiz-home-link" href="./index.html">Birthday Adventure</a>
+  </header>
+
+  <main id="quiz-main" class="quiz-main" tabindex="-1">
+    <section class="quiz-card quiz-intro" id="name-screen" aria-labelledby="quiz-title">
+      <div class="quiz-brain" aria-hidden="true">🧠</div>
+      <p class="eyebrow">The Bhatti Family Challenge</p>
+      <h1 id="quiz-title">How Well Do You Know Baygi?</h1>
+      <p>Twenty questions. One family legend. Absolutely no calling Fatima for hints.</p>
+      <form id="name-form" class="name-form">
+        <label for="player-name">First Name</label>
+        <input id="player-name" name="playerName" type="text" maxlength="30" autocomplete="given-name" required>
+        <button class="button button-primary button-large" type="submit">Start the Quiz <span aria-hidden="true">→</span></button>
+      </form>
+    </section>
+
+    <section class="quiz-card" id="question-screen" aria-labelledby="question-text" hidden>
+      <div class="quiz-progress-copy"><span id="question-count">Question 1 of 20</span><span id="quiz-score-status">Choose your answer</span></div>
+      <div class="progress-track" role="progressbar" aria-label="Quiz progress" aria-valuemin="1" aria-valuemax="20" aria-valuenow="1"><span id="quiz-progress-fill"></span></div>
+      <p class="eyebrow">How well do you know the Queen?</p>
+      <h2 id="question-text"></h2>
+      <div class="quiz-options" id="quiz-options" role="radiogroup" aria-labelledby="question-text"></div>
+      <button class="button button-primary" id="next-question" type="button" disabled>Next Question</button>
+    </section>
+
+    <section class="quiz-card" id="tiebreaker-screen" aria-labelledby="tiebreaker-title" hidden>
+      <div class="quiz-brain" aria-hidden="true">✨</div>
+      <p class="eyebrow">Bonus Tie Breaker · Not Scored</p>
+      <h2 id="tiebreaker-title">If Baygi had one wish granted today, what would it be?</h2>
+      <form id="tiebreaker-form" class="name-form">
+        <label for="tiebreaker-answer">Your answer</label>
+        <textarea id="tiebreaker-answer" rows="4" maxlength="300" required></textarea>
+        <button class="button button-primary button-large" type="submit">Reveal the Results</button>
+      </form>
+    </section>
+
+    <section class="quiz-card quiz-results" id="results-screen" aria-labelledby="results-title" hidden>
+      <div class="quiz-brain" aria-hidden="true">🎉</div>
+      <p class="eyebrow">The Kingdom Has Counted</p>
+      <h2 id="results-title"></h2>
+      <p class="quiz-title-award" id="quiz-title-award"></p>
+      <aside class="baygi-answer" aria-labelledby="baygi-answer-title">
+        <h3 id="baygi-answer-title">Baygi's Tie-Breaker Answer</h3>
+        <p>“To see her father one last time.”</p>
+      </aside>
+      <section id="missed-section" aria-labelledby="missed-title">
+        <h3 id="missed-title">Questions to Remember</h3>
+        <div id="missed-list"></div>
+      </section>
+      <section class="leaderboard" aria-labelledby="leaderboard-title">
+        <h3 id="leaderboard-title">🏆 Local Top 10</h3>
+        <ol id="leaderboard-list"></ol>
+        <p class="privacy-note">Saved only on this device.</p>
+      </section>
+      <div class="button-row quiz-actions">
+        <button class="button button-primary" id="play-again" type="button">🔁 Play Again</button>
+        <a class="button button-secondary" href="./index.html">🏠 Return to Birthday Adventure</a>
+      </div>
+    </section>
+  </main>
+  <div class="sr-only" id="quiz-live-region" aria-live="polite" aria-atomic="true"></div>
+  <script src="./quiz.js"></script>
+</body>
+</html>

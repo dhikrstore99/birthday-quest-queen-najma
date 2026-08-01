@@ -69,6 +69,8 @@ h1 span { color: var(--gold-300); }
 .subtitle { margin: 0; color: var(--gold-300); font-size: .85rem; letter-spacing: .12em; text-transform: uppercase; }
 .intro { max-width: 580px; margin: 1.4rem auto; color: rgba(255,255,255,.84); font-size: 1.05rem; }
 .welcome-actions { display: flex; justify-content: center; margin-top: 1.7rem; }
+.quiz-home-action { display: flex; justify-content: center; margin-top: .85rem; }
+.quiz-home-action .button { text-decoration: none; }
 .privacy-note { margin-top: 1.4rem; color: rgba(255,255,255,.65); font-size: .78rem; }
 .privacy-note span { color: var(--gold-300); }
 .resume-panel { max-width: 480px; margin: 1.5rem auto 0; padding: 1rem; background: rgba(255,255,255,.09); border: 1px solid rgba(255,255,255,.2); border-radius: var(--radius-md); }
